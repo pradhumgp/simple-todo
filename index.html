@@ -1,0 +1,61 @@
+<html>
+  <script>
+    let id = 0;
+
+    function markDone(id) {
+            // Change the button text to "Done!" when called
+            const wrapper = document.getElementById(id);
+            const button = wrapper.querySelector("button");
+            button.innerHTML = "Done!";
+        }
+
+    function addTodo() {
+      // Get the title and description input values
+      const title = document.getElementById("title").value;
+      const description = document.getElementById("description").value;
+      const container = document.getElementById("container");
+
+      // normal/ugly approach
+      // container.innerHTML = container.innerHTML + "<div>" + title + " - " + description + "</div>";
+
+      //document.createElement
+      const wrapper = document.createElement("div");
+      const div1 = document.createElement("div");
+      const div2 = document.createElement("div");
+      const button = document.createElement("button");
+
+      // Set the innerHTML of the title and description divs
+      div1.innerHTML = title;
+      div2.innerHTML = description;
+      button.innerHTML = "Mark once done";
+
+      // Set the button text and onclick attribute to call markDone with the current id
+      button.innerHTML = "Mark once done";
+      button.setAttribute("onclick", `markDone(${id})`);
+      wrapper.setAttribute("id", id);
+
+      // Append the new elements to the container div
+      wrapper.appendChild(div1);
+      wrapper.appendChild(div2);
+      wrapper.appendChild(button);
+      container.appendChild(wrapper);
+
+
+       // Increment the global ID counter
+       id++;
+    }
+  </script>
+
+  <body>
+    <div>
+      <input type="text" placeholder="title" id="title" />
+      <br />
+      <br />
+      <input type="text" placeholder="description" id="description" />
+      <br />
+      <br />
+      <button onClick="addTodo()">Add todo</button>
+      <div id="container"></div>
+    </div>
+  </body>
+</html>
